@@ -1,0 +1,75 @@
+
+name: Godot Multi-Platform Build
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Export Game
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Godot 4.7
+        uses: chickensoft-games/setup-godot@v2
+        with:
+          version: 4.7.0
+          use-dotnet: false
+          include-templates: true
+
+      - name: Verify Godot
+        run: godot --version
+
+      - name: Import assets
+        run: godot --headless --editor --path . --import
+
+      - name: Create build directories
+        run: |
+          mkdir -p builds/windows
+          mkdir -p builds/linux
+          mkdir -p builds/web
+
+      - name: Export Windows
+        run: |
+          godot --headless --path . \
+            --export-release "Windows" \
+            builds/windows/Game.exe
+
+      - name: Export Linux
+        run: |
+          godot --headless --path . \
+            --export-release "Linux" \
+            builds/linux/Game.x86_64
+
+      - name: Export Web
+        run: |
+          godot --headless --path . \
+            --export-release "Web" \
+            builds/web/index.html
+
+      - name: Upload Windows build
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: builds/windows/
+
+      - name: Upload Linux build
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-build
+          path: builds/linux/
+
+      - name: Upload Web build
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: builds/web/
