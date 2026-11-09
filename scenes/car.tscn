@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c24cmobfc3jw2"]
+
+[ext_resource type="Script" uid="uid://bbfb3yra5ve2y" path="res://scripts/car_controller.gd" id="1_qt2eu"]
+[ext_resource type="Texture2D" uid="uid://dle1477xlghd" path="res://assets/Cars/car_black_3.png" id="2_qt2eu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qt2eu"]
+size = Vector2(22, 40)
+
+[node name="Car" type="CharacterBody2D" unique_id=1504973678]
+script = ExtResource("1_qt2eu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1643821445]
+position = Vector2(-4.7683716e-07, -1.9073486e-06)
+scale = Vector2(0.3142857, 0.30534354)
+texture = ExtResource("2_qt2eu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=528470216]
+shape = SubResource("RectangleShape2D_qt2eu")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=962476042]
+zoom = Vector2(0.65, 0.65)

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dlxqb12g2gl8o"]
+
+[ext_resource type="Script" uid="uid://wal07m36maka" path="res://scripts/track.gd" id="1_s1rm4"]
+
+[node name="Track" type="Node2D" unique_id=1136989844]
+script = ExtResource("1_s1rm4")
+
+[node name="Grass" type="ColorRect" parent="." unique_id=1759530793]
+offset_left = -5.0
+offset_right = -5.0
+
+[node name="Road" type="Line2D" parent="." unique_id=695221085]
+
+[node name="RoadBorder" type="Line2D" parent="." unique_id=429186627]
+
+[node name="CenterLine" type="Line2D" parent="." unique_id=436267418]
+
+[node name="StartingGrid" type="Node2D" parent="." unique_id=158542143]
+
+[node name="Decorations" type="Node2D" parent="." unique_id=2023795191]
